@@ -8,7 +8,8 @@
 <body>
     <input type="file" id="fileUpload" accept=".pdf, .csv, .xlsx">
     <button onclick="uploadFile()">上傳並解析</button>
-
+    <label>選擇已解析的 JSON 檔案：</label>
+    <input type="file" id="jsonInput" accept=".json" onchange="handleJsonUpload(event)">
     <table id="quizTable">
         <thead>
             <tr id="tableHeader">
