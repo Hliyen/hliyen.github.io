@@ -14,26 +14,45 @@ def preprocess_image(pil_image):
     threshold = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
     return Image.fromarray(threshold)
 
+from pdf2image import convert_from_path
+# 新增導入，這能讓我們逐頁載入而不一次吃掉整份檔案
+from pdf2image.exceptions import PDFPageCountError
+
 def parse_pdf_with_images(file_path):
-    print(f"正在使用「節省記憶體模式」解析 PDF: {file_path}")
-    
-    # 1. 轉為圖片並逐頁處理 (使用低 DPI 節省資源)
-    # 將 pdf_path 轉為圖片，dpi設為150，thread_count設為1以降低併發負擔
-    images = convert_from_path(file_path, dpi=150, thread_count=1)
+    print(f"正在啟動「極致省記憶體」模式解析 PDF: {file_path}")
     
     extracted_text = ""
-    for i, img in enumerate(images):
-        print(f"解析第 {i+1} 頁...")
-        # 預處理圖片
-        preprocessed_img = preprocess_image(img)
-        # OCR 辨識
-        text = pytesseract.image_to_string(preprocessed_img, lang='chi_tra+eng')
-        extracted_text += text + "\n--[PAGE_BREAK]--\n"
+    
+    # 使用 pages_from_path 逐頁生成器，這不會一次轉完整個 PDF
+    # 注意：這裡我們先不轉成 PIL 圖片，而是控制單頁轉檔
+    try:
+        # 獲取頁數，只處理一頁，處理完就釋放
+        from pdf2image import pdfinfo_from_path
+        info = pdfinfo_from_path(file_path)
+        total_pages = info["Pages"]
         
-        # 關鍵：處理完刪除圖片引用，釋放記憶體
-        del img
-        del preprocessed_img
-        
+        for i in range(1, total_pages + 1):
+            print(f"正在處理第 {i} 頁，共 {total_pages} 頁...")
+            
+            # 關鍵：每次只轉一頁，並強制轉出 100 DPI (極低畫質換取成功率)
+            # 如果還是不行，我們可能得考慮把 DPI 降到 72
+            img_list = convert_from_path(file_path, dpi=100, first_page=i, last_page=i)
+            
+            if img_list:
+                img = img_list[0]
+                preprocessed_img = preprocess_image(img)
+                text = pytesseract.image_to_string(preprocessed_img, lang='chi_tra+eng')
+                extracted_text += text + "\n--[PAGE_BREAK]--\n"
+                
+                # 徹底清理記憶體
+                del img
+                del img_list
+                del preprocessed_img
+                
+    except Exception as e:
+        print(f"解析發生錯誤: {e}")
+        return []
+
     print("OCR 完成，開始解析文字為 JSON...")
     return process_text_to_json_robust(extracted_text)
 
