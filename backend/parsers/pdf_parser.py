@@ -8,7 +8,7 @@ import numpy as np
 import cv2 # 需要 pip install opencv-python-headless
 
 # 設定 Tesseract 路徑 (Windows 用戶可能需要)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def preprocess_image(pil_image):
     """基本圖像預處理以提高 OCR 準確性"""
@@ -34,10 +34,10 @@ def parse_pdf_with_images(file_path):
     # 在這裡加上 poppler_path 參數！
     # 請將 r"C:\poppler\bin" 替換成你實際解壓縮的 bin 資料夾路徑
     # ==========================================
-    POPPLER_PATH = r"C:\poppler\Library\bin" 
+    
     
     # 將路徑傳入 convert_from_path
-    images = convert_from_path(file_path, poppler_path=POPPLER_PATH)
+    images = convert_from_path(file_path)
     
     extracted_text = ""
     # ... (後面的程式碼維持不變) ...
