@@ -121,6 +121,17 @@ function renderTable(data) {
     });
 }
 
+// 在 main.js 中加入這個函式
+function handleJsonUpload(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const data = JSON.parse(e.target.result);
+        renderTable(data); // 直接把 JSON 餵給原本的渲染函式
+    };
+    reader.readAsText(file);
+}
+
 // ==========================================
 // 作答比對、標記與取消選取 (Toggle) 邏輯
 // ==========================================
