@@ -9,7 +9,8 @@ from parsers.excel_parser import parse_excel_csv
 from parsers.pdf_parser import parse_pdf_with_images
 
 app = Flask(__name__)
-CORS(app) # 允許跨網域請求，讓前端可以順利呼叫 API
+# 強制允許所有來源的請求，並支援跨網域標頭
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # 設定上傳檔案的儲存路徑
 UPLOAD_FOLDER = 'uploads'
