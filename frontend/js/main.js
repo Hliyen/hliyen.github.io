@@ -124,10 +124,17 @@ function renderTable(data) {
 // 在 main.js 中加入這個函式
 function handleJsonUpload(event) {
     const file = event.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
     reader.onload = function(e) {
-        const data = JSON.parse(e.target.result);
-        renderTable(data); // 直接把 JSON 餵給原本的渲染函式
+        try {
+            const data = JSON.parse(e.target.result);
+            renderTable(data); // 直接渲染表格，完全不需要經過後端！
+            alert("讀取成功！");
+        } catch (err) {
+            alert("JSON 格式錯誤，請檢查檔案內容。");
+        }
     };
     reader.readAsText(file);
 }
