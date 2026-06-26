@@ -4,14 +4,13 @@ FROM python:3.9-slim
 # 2. 設定工作目錄
 WORKDIR /app
 
-# 3. 安裝系統依賴 (Poppler, Tesseract 繁中/英文包, OpenCV 需要的底層套件)
-RUN apt-get update && apt-get install -y \
+# 3. 安裝系統依賴 
+# (移除了 headless 不需要的圖形套件，並加上 --fix-missing 與 --no-install-recommends 讓安裝更穩定且輕量)
+RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-chi-tra \
     tesseract-ocr-eng \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # 4. 複製 requirements.txt 並安裝 Python 套件
