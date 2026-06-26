@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>題目檢視系統</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <input type="file" id="fileUpload" accept=".pdf, .csv, .xlsx">
+    <button onclick="uploadFile()">上傳並解析</button>
+
+    <table id="quizTable">
+        <thead>
+            <tr id="tableHeader">
+                <th>正確答案</th>
+                <th>題目</th>
+                <th id="markColumn">標記</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
