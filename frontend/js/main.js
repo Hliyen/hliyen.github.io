@@ -16,7 +16,7 @@ async function uploadFile() {
 
     try {
         // 呼叫 Flask 後端的 /upload API
-        const response = await fetch('http://127.0.0.1:5000/upload', {
+        const response = await fetch('https://hliyen-github-io.onrender.com/upload', {
             method: 'POST',
             body: formData
         });
