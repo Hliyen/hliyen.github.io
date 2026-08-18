@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>明日方舟 - 專區目錄</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 頂部返回導覽 -->
+    <nav class="nav-card">
+      <a href="../../index.html" class="back-link">
+        <span class="arrow">←</span> 返回遊戲總覽
+      </a>
+      <div class="badge-group">
+        <span class="badge-item badge-lavender">明日方舟</span>
+        <span class="badge-item badge-mint">專區目錄</span>
+      </div>
+    </nav>
+
+    <!-- 遊戲卡片容器 -->
+    <div class="game-card">
+      <h2 class="game-title">明日方舟 專區目錄</h2>
+      <div id="category-container" class="category-grid">
+        <p style="color: var(--ink-soft); font-size: 13px;">正在載入分類資料...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 依分類名稱映射色彩 Class 與 Emoji
+    function getCategoryMeta(type) {
+      const t = (type || '').trim();
+      if (t.includes('攻略')) return { class: 'guide', icon: '⚔️' };
+      if (t.includes('時間線')) return { class: 'story', icon: '⏳' };
+      if (t.includes('劇情')) return { class: 'story', icon: '📖' };
+      if (t.includes('專有名詞') || t.includes('術語') || t.includes('設定')) return { class: 'terms', icon: '📚' };
+      return { class: 'guide', icon: '📌' };
+    }
+
+    // 讀取當前遊戲目錄下的 data.json
+    fetch('data.json?v=' + new Date().getTime())
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP 錯誤：${response.status}`);
+        return response.json();
+      })
+      .then(categories => {
+        const container = document.getElementById('category-container');
+
+        if (!Array.isArray(categories) || categories.length === 0) {
+          container.innerHTML = '<p style="color: var(--ink-soft);">目前尚無文章資料。</p>';
+          return;
+        }
+
+        // 動態生成分類區塊與文章清單
+        container.innerHTML = categories.map(cat => {
+          const catType = cat.type || '未分類';
+          const meta = getCategoryMeta(catType);
+          const articles = cat.articles || [];
+
+          const articlesHtml = articles.map(article => {
+            const tags = article.tags || (article.date ? [article.date] : []);
+            const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
+
+            return `
+              <li class="article-item">
+                <a href="${article.url}">${article.title}</a>
+                <div class="badge-group">${tagsHtml}</div>
+              </li>
+            `;
+          }).join('');
+
+          return `
+            <div class="category-block ${meta.class}">
+              <h4>${meta.icon} ${catType}</h4>
+              <ul class="article-list">
+                ${articlesHtml || '<li class="article-item"><span style="font-size:12px; color:var(--ink-soft);">尚無文章</span></li>'}
+              </ul>
+            </div>
+          `;
+        }).join('');
+      })
+      .catch(err => {
+        console.error('目錄載入失敗:', err);
+        document.getElementById('category-container').innerHTML = 
+          `<p style="color: var(--coral);">資料載入失敗，請確認 data.json 格式是否正確。</p>`;
+      });
+  </script>
+</body>
+</html>
