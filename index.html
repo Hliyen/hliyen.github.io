@@ -9,14 +9,14 @@
 </head>
 <body>
   <div class="container">
-    <header style="margin-bottom: 28px;">
-      <h1 style="font-size: 26px; font-weight: 800; margin-bottom: 8px;">📖 個人紀錄庫</h1>
+    <header style="margin-bottom: 24px;">
+      <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 6px;">📖 個人紀錄庫</h1>
       <p style="color: var(--ink-soft); font-size: 13px; margin: 0;">主要是方便我查找和記錄我要的資料。</p>
     </header>
 
-    <!-- 動態渲染大分類卡片容器 -->
+    <!-- 動態大分類卡片容器 -->
     <main id="main-directory">
-      <p style="color: var(--ink-soft); font-size: 13px;">正在載入專區資料...</p>
+      <p style="color: var(--ink-soft); font-size: 13px;">正在載入資料...</p>
     </main>
   </div>
 
@@ -30,11 +30,10 @@
         const container = document.getElementById('main-directory');
 
         if (!Array.isArray(sections) || sections.length === 0) {
-          container.innerHTML = '<p style="color: var(--ink-soft);">目前尚無專區資料。</p>';
+          container.innerHTML = '<p style="color: var(--ink-soft);">目前尚無資料。</p>';
           return;
         }
 
-        // 動態生成大分類卡片（如：遊戲專區），內部再排版各遊戲
         container.innerHTML = sections.map(sec => {
           const sectionName = sec.sectionName || '專區分類';
           const items = sec.items || [];
@@ -43,28 +42,20 @@
             const tagsHtml = (item.tags || []).map(tag => `<span class="badge">${tag}</span>`).join('');
 
             return `
-              <div class="category-block guide" style="display: flex; flex-direction: column; justify-content: space-between; background: #fffcf8; border-color: rgba(238, 157, 66, 0.25);">
-                <div>
-                  <h4 style="font-size: 16px; margin-bottom: 8px;">
-                    <a href="${item.url}" style="color: var(--ink); text-decoration: none;">${item.name}</a>
-                  </h4>
-                  <p style="color: var(--ink-soft); font-size: 12px; line-height: 1.6; margin: 0 0 14px;">
-                    ${item.desc || ''}
-                  </p>
+              <a href="${item.url}" class="compact-game-card">
+                <div class="compact-game-title">
+                  <span class="game-icon">🎮</span>
+                  <strong>${item.name}</strong>
                 </div>
-
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px;">
-                  <div class="badge-group">${tagsHtml}</div>
-                  <a href="${item.url}" class="back-link" style="padding: 4px 10px; font-size: 11px;">進入專區 →</a>
-                </div>
-              </div>
+                <div class="badge-group">${tagsHtml}</div>
+              </a>
             `;
           }).join('');
 
           return `
             <div class="game-card">
               <h2 class="game-title">${sectionName}</h2>
-              <div class="category-grid">
+              <div class="compact-grid">
                 ${itemsHtml || '<p style="color: var(--ink-soft); font-size: 12px;">此分類下尚無項目</p>'}
               </div>
             </div>
