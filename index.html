@@ -2,48 +2,101 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>個人紀錄庫</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>遊戲攻略與世界觀筆記庫</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
-    <!-- 遊戲卡片目錄 -->
-    <div class="game-card">
-      <h2 class="game-title">明日方舟</h2>
-      <div class="category-grid">
-        <!-- 劇情分流 -->
-        <div class="category-block story">
-          <h4>📖 劇情與時間線</h4>
-          <ul class="article-list">
-            <li class="article-item">
-              <a href="games/Arknights/BornInTheNight.html">序章 生於黑夜</a>
-              <span class="badge">2026-08-18</span>
-            </li>
-            <li class="article-item">
-              <a href="games/Arknights/Chronology.html">時間線</a>
-              <span class="badge">2026-08-18</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-	<!-- 遊戲卡片目錄 -->
-    <div class="game-card">
-      <h2 class="game-title">這就是江湖</h2>
-      <div class="category-grid">
-        
-        <!-- 攻略分流  -->
-        <div class="category-block guide">
-          <h4>⚔️ 攻略與養成</h4>
-          <ul class="article-list">
-            <li class="article-item">
-              <a href="games/ZheJioShiJiangHu/Sword.html">招式 ● 劍</a>
-              <span class="badge">2026-08-18</span>
-            </li>
-          </ul>
-        </div>
-	   </div>
-	</div>
+    <header style="margin-bottom: 28px;">
+      <h1 style="font-size: 26px; font-weight: 800; margin-bottom: 8px;">🎮 遊戲筆記與目錄</h1>
+      <p style="color: var(--ink-soft); font-size: 13px; margin: 0;">收錄遊戲攻略、主線劇情時間軸與世界觀名詞解析。</p>
+    </header>
+
+    <!-- 目錄動態渲染容器 -->
+    <main id="directory-container">
+      <p style="color: var(--ink-soft); font-size: 13px;">正在載入目錄資料...</p>
+    </main>
   </div>
+
+  <script>
+    // 依分類名稱映射 CSS 樣式 class 與 emoji 圖示
+    function getCategoryMeta(type) {
+      const t = (type || '').trim();
+      if (t.includes('攻略')) {
+        return { class: 'guide', icon: '⚔️' };
+      }
+      if (t.includes('時間線')) {
+        return { class: 'story', icon: '⏳' };
+      }
+      if (t.includes('劇情')) {
+        return { class: 'story', icon: '📖' };
+      }
+      if (t.includes('專有名詞') || t.includes('術語') || t.includes('設定')) {
+        return { class: 'terms', icon: '📚' };
+      }
+      return { class: 'guide', icon: '📌' };
+    }
+
+    // 讀取 data.json（加入時間戳記防快取）
+    fetch('data.json?v=' + new Date().getTime())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP 狀態碼錯誤：${response.status}`);
+        }
+        return response.json();
+      })
+      .then(games => {
+        const container = document.getElementById('directory-container');
+
+        if (!Array.isArray(games) || games.length === 0) {
+          container.innerHTML = '<p style="color: var(--ink-soft);">目前尚無任何遊戲資料。</p>';
+          return;
+        }
+
+        // 動態生成卡片與網格
+        container.innerHTML = games.map(game => {
+          const gameName = game.gameName || '未命名遊戲';
+          const categories = game.categories || [];
+
+          const categoriesHtml = categories.map(cat => {
+            const catType = cat.type || '未分類';
+            const meta = getCategoryMeta(catType);
+            const articles = cat.articles || [];
+
+            const articlesHtml = articles.map(article => `
+              <li class="article-item">
+                <a href="${article.url}">${article.title}</a>
+                ${article.date ? `<span class="badge">${article.date}</span>` : ''}
+              </li>
+            `).join('');
+
+            return `
+              <div class="category-block ${meta.class}">
+                <h4>${meta.icon} ${catType}</h4>
+                <ul class="article-list">
+                  ${articlesHtml || '<li class="article-item"><span style="font-size:12px; color:var(--ink-soft);">尚無文章</span></li>'}
+                </ul>
+              </div>
+            `;
+          }).join('');
+
+          return `
+            <div class="game-card">
+              <h2 class="game-title">${gameName}</h2>
+              <div class="category-grid">
+                ${categoriesHtml}
+              </div>
+            </div>
+          `;
+        }).join('');
+      })
+      .catch(err => {
+        console.error('目錄載入失敗:', err);
+        document.getElementById('directory-container').innerHTML = 
+          `<p style="color: var(--coral);">目錄資料載入失敗，請確認 data.json 格式是否正確。</p>`;
+      });
+  </script>
 </body>
 </html>
