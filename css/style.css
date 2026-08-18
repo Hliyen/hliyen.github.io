@@ -10,7 +10,7 @@
   --mint-bg: #f0faf6;
   --orange: #ee9d42;
   --orange-bg: #fff9f2;
-  --gold: #ffd700;
+  --gold: #ffd700; /* 已補齊分號 */
   --shadow-soft: 0 12px 35px rgba(80, 54, 78, 0.07);
 }
 
@@ -60,7 +60,6 @@ body {
   border: 1px solid transparent;
 }
 
-/* 分類色彩分流 */
 .category-block.guide {
   background: var(--orange-bg);
   border-color: rgba(238, 157, 66, 0.2);
@@ -72,6 +71,14 @@ body {
   border-color: rgba(143, 122, 234, 0.2);
 }
 .category-block.story h4 { color: #6d5abb; }
+
+.category-block.terms,
+.category-block.專有名詞 {
+  background: var(--mint-bg);
+  border-color: rgba(54, 165, 139, 0.2);
+}
+.category-block.terms h4,
+.category-block.專有名詞 h4 { color: #2b826d; }
 
 .category-block h4 {
   margin: 0 0 12px;
@@ -114,51 +121,7 @@ body {
   border: 1px solid rgba(80, 54, 78, 0.1);
 }
 
-/* 2. 劇情時間線組件 */
-.timeline {
-  position: relative;
-  margin: 20px 0;
-  padding-left: 24px;
-  border-left: 2px dashed rgba(143, 122, 234, 0.35);
-}
-
-.timeline-node {
-  position: relative;
-  margin-bottom: 24px;
-}
-
-.timeline-node::before {
-  content: "";
-  position: absolute;
-  left: -31px;
-  top: 3px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--lavender);
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(143, 122, 234, 0.4);
-}
-
-.timeline-date {
-  font-size: 11px;
-  font-weight: 800;
-  color: #685a96;
-  background: #eee9ff;
-  padding: 3px 8px;
-  border-radius: 6px;
-  display: inline-block;
-  margin-bottom: 6px;
-}
-
-.timeline-content {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  margin: 0;
-}
-
-/* 3. 攻略重點提示框 */
+/* 2. 提示框 */
 .note-box {
   margin: 18px 0;
   padding: 14px 16px;
@@ -170,27 +133,7 @@ body {
   line-height: 1.6;
 }
 
-/* 4. 遊戲截圖展示框 */
-.game-figure {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.game-figure img {
-  max-width: 100%;
-  border-radius: 14px;
-  border: 4px solid white;
-  box-shadow: 0 10px 24px rgba(80, 54, 78, 0.12);
-}
-
-.game-figure figcaption {
-  margin-top: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-soft);
-}
-
-/* 5. 標題卡片主容器 */
+/* 3. 標題卡片主容器 */
 .title-badge-card {
   display: flex;
   align-items: center;
@@ -218,7 +161,6 @@ body {
   gap: 10px;
 }
 
-/* 標題左側色彩裝飾條 */
 .title-badge-card.guide h2::before {
   content: "";
   display: inline-block;
@@ -237,7 +179,7 @@ body {
   background: var(--lavender);
 }
 
-/* 6. 頂部返回導覽卡片 */
+/* 4. 頂部返回導覽卡片 */
 .nav-card {
   display: flex;
   align-items: center;
@@ -284,7 +226,7 @@ body {
   transform: translateX(-3px);
 }
 
-/* 7. 膠囊標籤共用組件 */
+/* 5. 膠囊標籤 */
 .badge-group {
   display: flex;
   align-items: center;
@@ -323,114 +265,63 @@ body {
   background: var(--mint-bg);
   border: 1px solid rgba(54, 165, 139, 0.28);
 }
-/* 參與人員卡片 */
-.cast-card {
-  background: var(--lavender-bg);
-  border: 1px solid rgba(143, 122, 234, 0.22);
-  border-radius: 14px;
-  padding: 14px 18px;
-  margin: 16px 0 24px;
-}
 
-.cast-title {
-  margin-bottom: 10px;
-}
-
-.cast-title span {
-  font-size: 11px;
-  font-weight: 800;
-  color: #685a96;
-  letter-spacing: 0.05em;
-}
-
-.cast-list {
+/* 6. 模組標題與標籤列 */
+.module-main-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.cast-item {
-  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: white;
-  padding: 5px 11px;
-  border-radius: 10px;
-  border: 1px solid rgba(109, 83, 118, 0.12);
-  box-shadow: 0 2px 6px rgba(80, 54, 78, 0.04);
-}
-
-.cast-name {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--ink);
-}
-
-.cast-role {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--ink-soft);
-  background: #f4f2f8;
-  padding: 2px 6px;
-  border-radius: 6px;
-}
-
-/* 劇情概述內文排版 */
-.story-overview-section {
-  margin-top: 20px;
-}
-
-.section-title {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--ink);
+  justify-content: space-between;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
-.story-content {
-  font-size: 13px;
-  line-height: 1.8;
+.module-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0;
+}
+
+.section-badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(109, 83, 118, 0.12);
+}
+
+.section-sub-title {
+  font-size: 14px;
+  font-weight: 800;
   color: #4e4654;
+  margin: 0;
 }
 
-.story-content p {
-  margin-bottom: 12px;
-}
-
-/* 專有名詞分類色彩 */
-.category-block.terms,
-.category-block.專有名詞 {
-  background: var(--mint-bg);
-  border-color: rgba(54, 165, 139, 0.2);
-}
-
-.category-block.terms h4,
-.category-block.專有名詞 h4 {
-  color: #2b826d;
-}
-
-/* 武器與招式卡片網格 */
+/* 7. 招式卡片（雙欄緊湊排版） */
 .item-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin-top: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
 }
 
-/* 招式/武器卡片主體 */
+@media (max-width: 640px) {
+  .item-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .item-card {
   background: white;
   border: 1px solid rgba(109, 83, 118, 0.12);
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 4px 14px rgba(80, 54, 78, 0.04);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 3px 10px rgba(80, 54, 78, 0.03);
   display: flex;
   flex-direction: column;
-}
-
-.item-card.weapon {
-  background: #fffdfc;
-  border-color: rgba(238, 157, 66, 0.22);
+  justify-content: space-between;
 }
 
 .item-card-header {
@@ -443,12 +334,11 @@ body {
 
 .item-card-header h4 {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--ink);
 }
 
-/* 階級/品質標籤 */
 .rarity-badge {
   font-size: 10px;
   font-weight: 800;
@@ -463,141 +353,53 @@ body {
   border: 1px solid rgba(238, 157, 66, 0.35);
 }
 
-.rarity-badge.purple {
-  color: #685a96;
-  background: #f0ecff;
-  border: 1px solid rgba(143, 122, 234, 0.35);
-}
-
 .item-meta {
   font-size: 11px;
   color: var(--ink-soft);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .item-desc {
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11.5px;
+  line-height: 1.5;
   color: #554f5c;
-  margin: 0 0 12px;
-  flex-grow: 1;
+  margin: 0;
 }
 
-/* 屬性數值列表 */
-.stat-list {
-  background: #faf9fc;
-  border-radius: 8px;
-  padding: 8px 10px;
-  display: grid;
-  gap: 6px;
-  border: 1px solid rgba(109, 83, 118, 0.07);
-}
-
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-}
-
-.stat-name {
-  color: var(--ink-soft);
-  font-weight: 600;
-}
-
-.stat-value {
-  color: #a06f52;
-  font-weight: 800;
-}
-
-/* 緊湊型網格排版 */
-.compact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
-}
-
-/* 緊湊型遊戲小卡片 */
-.compact-game-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: #fffdfc;
-  border: 1px solid rgba(238, 157, 66, 0.22);
-  text-decoration: none;
-  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
-}
-
-.compact-game-card:hover {
-  transform: translateY(-2px);
-  background: #fff9f2;
-  border-color: rgba(238, 157, 66, 0.45);
-  box-shadow: 0 6px 16px rgba(80, 54, 78, 0.08);
-}
-
-.compact-game-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-}
-
-.compact-game-title .game-icon {
-  font-size: 14px;
-}
-
-.compact-game-title strong {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.compact-game-card:hover .compact-game-title strong {
-  color: var(--coral);
-}
-
-/* 自創前置招式容器 */
+/* 8. 自創前置招式標籤 */
 .prereq-box {
   background: #f8f6fc;
-  border-radius: 8px;
-  padding: 8px 10px;
-  margin: 6px 0 10px;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin: 4px 0 8px;
   border: 1px dashed rgba(143, 122, 234, 0.25);
 }
 
 .prereq-label {
   display: block;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   color: #685a96;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .prereq-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 4px;
 }
 
 .prereq-tag {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--ink);
   background: white;
-  padding: 2px 7px;
-  border-radius: 6px;
-  border: 1px solid rgba(109, 83, 118, 0.15);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(109, 83, 118, 0.12);
 }
 
-/* ================= 側邊欄 (Sidebar) 樣式 ================= */
-
-/* 左上角三條線開關按鈕：半透明毛玻璃質感 */
+/* 9. 側邊欄 (Sidebar) */
 .sidebar-toggle-btn {
   position: fixed;
   top: 18px;
@@ -607,7 +409,7 @@ body {
   height: 40px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.35); /* 輕透半透明背景 */
+  background: rgba(255, 255, 255, 0.35);
   color: var(--ink);
   font-size: 19px;
   cursor: pointer;
@@ -627,7 +429,6 @@ body {
   transform: scale(1.05);
 }
 
-/* 遮罩背景 */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
@@ -644,7 +445,6 @@ body {
   pointer-events: auto;
 }
 
-/* 側邊欄抽屜主體 */
 .site-sidebar {
   position: fixed;
   top: 0;
@@ -665,7 +465,6 @@ body {
   transform: translateX(0);
 }
 
-/* 側邊欄標頭 */
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -694,14 +493,12 @@ body {
   color: var(--coral);
 }
 
-/* 滾動導覽容器 */
 .sidebar-nav {
   flex: 1;
   overflow-y: auto;
   padding: 14px 12px;
 }
 
-/* 第一層級：遊戲大分組 */
 .sidebar-group {
   margin-bottom: 20px;
   padding-bottom: 12px;
@@ -719,10 +516,8 @@ body {
   color: var(--ink);
   padding: 4px 8px;
   margin-bottom: 8px;
-  letter-spacing: 0.02em;
 }
 
-/* 第二層級：類別子分組（時間線、劇情等） */
 .sidebar-subgroup {
   margin-bottom: 10px;
   padding-left: 6px;
@@ -734,10 +529,8 @@ body {
   color: #8b71da;
   padding: 3px 6px;
   margin-bottom: 3px;
-  letter-spacing: 0.03em;
 }
 
-/* 第三層級：具體文章連結 */
 .sidebar-link-list {
   list-style: none;
   padding: 0;
@@ -763,7 +556,6 @@ body {
   transform: translateX(2px);
 }
 
-/* 當前瀏覽頁面高亮 */
 .sidebar-link.active {
   background: #f0ecff;
   color: #685a96;
