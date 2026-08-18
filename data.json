@@ -1,10 +1,15 @@
 [
   {
-    "gameName": "這就是江湖",
-    "url": "games/ZheJioShiJiangHu/index.html"
-  },
-  {
-    "gameName": "明日方舟",
-    "url": "games/Arknights/index.html"
+    "sectionName": "🎮 遊戲",
+    "items": [
+      {
+        "name": "這就是江湖",
+        "url": "games/ZheJioShiJiangHu/index.html"
+      },
+      {
+        "name": "明日方舟",
+        "url": "games/Arknights/index.html"
+      }
+    ]
   }
 ]
