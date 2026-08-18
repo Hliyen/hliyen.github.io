@@ -24,6 +24,12 @@
         "articles": [
           { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "2026-08-18" }
         ]
+      },
+      {
+        "type": "專有名詞",
+        "articles": [
+          { "title": "石棺", "url": "games/Arknights/StoneCoffiny.html", "date": "2026-08-18" }
+        ]
       }
     ]
   }
