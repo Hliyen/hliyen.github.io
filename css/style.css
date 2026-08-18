@@ -564,7 +564,7 @@ body {
 
 /* ================= 側邊欄 (Sidebar) 樣式 ================= */
 
-/* 左上角懸浮開關按鈕 */
+/* 左上角三條線開關按鈕：半透明毛玻璃質感 */
 .sidebar-toggle-btn {
   position: fixed;
   top: 18px;
@@ -572,23 +572,25 @@ body {
   z-index: 99;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  border: 1px solid rgba(109, 83, 118, 0.15);
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.35); /* 輕透半透明背景 */
   color: var(--ink);
-  font-size: 18px;
+  font-size: 19px;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(80, 54, 78, 0.08);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(80, 54, 78, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 150ms ease;
+  transition: all 160ms ease;
 }
 
 .sidebar-toggle-btn:hover {
-  background: #fff0f3;
+  background: rgba(255, 240, 243, 0.7);
   color: var(--coral);
+  border-color: rgba(250, 111, 127, 0.3);
   transform: scale(1.05);
 }
 
@@ -596,7 +598,7 @@ body {
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(36, 35, 53, 0.35);
+  background: rgba(36, 35, 53, 0.3);
   backdrop-filter: blur(3px);
   z-index: 100;
   opacity: 0;
@@ -615,10 +617,10 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 270px;
+  width: 280px;
   background: #fffdfb;
   border-right: 1px solid rgba(109, 83, 118, 0.12);
-  box-shadow: 10px 0 30px rgba(80, 54, 78, 0.12);
+  box-shadow: 10px 0 35px rgba(80, 54, 78, 0.12);
   z-index: 101;
   transform: translateX(-100%);
   transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -659,41 +661,65 @@ body {
   color: var(--coral);
 }
 
-/* 連結群組與項目 */
+/* 滾動導覽容器 */
 .sidebar-nav {
   flex: 1;
   overflow-y: auto;
-  padding: 16px 12px;
+  padding: 14px 12px;
 }
 
+/* 第一層級：遊戲大分組 */
 .sidebar-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(109, 83, 118, 0.1);
+}
+
+.sidebar-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .sidebar-group-title {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--lavender);
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--ink);
   padding: 4px 8px;
-  margin-bottom: 4px;
-  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
 }
 
+/* 第二層級：類別子分組（時間線、劇情等） */
+.sidebar-subgroup {
+  margin-bottom: 10px;
+  padding-left: 6px;
+}
+
+.sidebar-category-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #8b71da;
+  padding: 3px 6px;
+  margin-bottom: 3px;
+  letter-spacing: 0.03em;
+}
+
+/* 第三層級：具體文章連結 */
 .sidebar-link-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 3px;
+  gap: 2px;
 }
 
 .sidebar-link {
   display: block;
-  padding: 7px 10px;
+  padding: 6px 10px;
   border-radius: 8px;
-  color: var(--ink);
+  color: var(--ink-soft);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   transition: all 120ms ease;
 }
@@ -701,12 +727,13 @@ body {
 .sidebar-link:hover {
   background: var(--coral-bg);
   color: var(--coral);
+  transform: translateX(2px);
 }
 
 /* 當前瀏覽頁面高亮 */
 .sidebar-link.active {
   background: #f0ecff;
-  color: var(--lavender);
+  color: #685a96;
   font-weight: 800;
   border-left: 3px solid var(--lavender);
 }
