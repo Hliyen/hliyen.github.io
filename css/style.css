@@ -407,3 +407,104 @@ body {
 .category-block.專有名詞 h4 {
   color: #2b826d;
 }
+
+/* 武器與招式卡片網格 */
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+
+/* 招式/武器卡片主體 */
+.item-card {
+  background: white;
+  border: 1px solid rgba(109, 83, 118, 0.12);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(80, 54, 78, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.item-card.weapon {
+  background: #fffdfc;
+  border-color: rgba(238, 157, 66, 0.22);
+}
+
+.item-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.item-card-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* 階級/品質標籤 */
+.rarity-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.rarity-badge.gold {
+  color: #b36b00;
+  background: #fff4db;
+  border: 1px solid rgba(238, 157, 66, 0.35);
+}
+
+.rarity-badge.purple {
+  color: #685a96;
+  background: #f0ecff;
+  border: 1px solid rgba(143, 122, 234, 0.35);
+}
+
+.item-meta {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.item-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #554f5c;
+  margin: 0 0 12px;
+  flex-grow: 1;
+}
+
+/* 屬性數值列表 */
+.stat-list {
+  background: #faf9fc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(109, 83, 118, 0.07);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.stat-name {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.stat-value {
+  color: #a06f52;
+  font-weight: 800;
+}
