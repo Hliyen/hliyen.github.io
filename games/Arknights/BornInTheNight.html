@@ -8,27 +8,40 @@
 </head>
 <body>
   <div class="container article-view">
+    <!-- 頂部返回導覽（已補上分類與日期標籤） -->
     <nav class="nav-card">
       <a href="../../index.html" class="back-link">
         <span class="arrow">←</span> 返回首頁目錄
       </a>
+      <div class="badge-group">
+        <span class="badge-item badge-lavender">明日方舟</span>
+        <span class="badge-item badge-coral">劇情時間線</span>
+      </div>
     </nav>
 
     <article>
-      <!-- 文章內頁示範：時間線、圖片與提示框 -->
       <div class="game-card">
-       <h2 class="game-title">序章 生於黑夜</h2>
-      <!-- 劇情時間線 -->
-       <div class="timeline">
-         <div class="timeline-node">
-           <span class="timeline-date">節點 01</span>
-           <p class="timeline-content">待新增</p>
-         </div>
-         <div class="timeline-node">
-          <span class="timeline-date">節點 02</span>
-          <p class="timeline-content">待新增</p>
+        <!-- 採用帶裝飾條與標籤的章節標題 -->
+        <div class="title-badge-card story" style="margin-top: 0;">
+          <h2>序章 生於黑夜</h2>
+          <div class="badge-group">
+            <span class="badge-item badge-lavender">主線前傳</span>
+            <span class="badge-item badge-mint">2026-08-18</span>
+          </div>
         </div>
-      </div>
+
+        <!-- 劇情時間線 -->
+        <div class="timeline">
+          <div class="timeline-node">
+            <span class="timeline-date">節點 01</span>
+            <p class="timeline-content">待新增</p>
+          </div>
+          <div class="timeline-node">
+            <span class="timeline-date">節點 02</span>
+            <p class="timeline-content">待新增</p>
+          </div>
+        </div>
+      </div> <!-- ✅ 補齊漏掉的 game-card 閉合標籤 -->
     </article>
   </div>
 </body>
