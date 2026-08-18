@@ -322,3 +322,76 @@ body {
   background: var(--mint-bg);
   border: 1px solid rgba(54, 165, 139, 0.28);
 }
+/* 參與人員卡片 */
+.cast-card {
+  background: var(--lavender-bg);
+  border: 1px solid rgba(143, 122, 234, 0.22);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin: 16px 0 24px;
+}
+
+.cast-title {
+  margin-bottom: 10px;
+}
+
+.cast-title span {
+  font-size: 11px;
+  font-weight: 800;
+  color: #685a96;
+  letter-spacing: 0.05em;
+}
+
+.cast-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cast-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  padding: 5px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(109, 83, 118, 0.12);
+  box-shadow: 0 2px 6px rgba(80, 54, 78, 0.04);
+}
+
+.cast-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cast-role {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: #f4f2f8;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* 劇情概述內文排版 */
+.story-overview-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.story-content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #4e4654;
+}
+
+.story-content p {
+  margin-bottom: 12px;
+}
