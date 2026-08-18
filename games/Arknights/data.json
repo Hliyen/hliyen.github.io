@@ -1,0 +1,20 @@
+[
+  {
+    "type": "時間線",
+    "articles": [
+      { "title": "時間線", "url": "table/Chronology.html", "tags": ["2026-08-18", "時間線"] }
+    ]
+  },
+  {
+    "type": "劇情",
+    "articles": [
+      { "title": "序章 生於黑夜", "url": "table/BornInTheNight.html", "tags": ["烏薩斯帝國", "切爾諾伯格"] }
+    ]
+  },
+  {
+    "type": "專有名詞",
+    "articles": [
+      { "title": "石棺", "url": "table/Glossary.html", "tags": ["專有名詞"] }
+    ]
+  }
+]
