@@ -509,3 +509,55 @@ body {
   color: #a06f52;
   font-weight: 800;
 }
+
+/* 緊湊型網格排版 */
+.compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* 緊湊型遊戲小卡片 */
+.compact-game-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fffdfc;
+  border: 1px solid rgba(238, 157, 66, 0.22);
+  text-decoration: none;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.compact-game-card:hover {
+  transform: translateY(-2px);
+  background: #fff9f2;
+  border-color: rgba(238, 157, 66, 0.45);
+  box-shadow: 0 6px 16px rgba(80, 54, 78, 0.08);
+}
+
+.compact-game-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.compact-game-title .game-icon {
+  font-size: 14px;
+}
+
+.compact-game-title strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compact-game-card:hover .compact-game-title strong {
+  color: var(--coral);
+}
