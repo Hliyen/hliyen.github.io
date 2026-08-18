@@ -1,52 +1,10 @@
 [
   {
     "gameName": "這就是江湖",
-    "categories": [
-      {
-        "type": "攻略",
-        "articles": [
-          { 
-            "title": "劍", 
-            "url": "games/ZheJioShiJiangHu/Sword.html", 
-            "tags": ["招式","自創武學"] 
-          }
-        ]
-      }
-    ]
+    "url": "games/ZheJioShiJiangHu/index.html",
   },
   {
     "gameName": "明日方舟",
-    "categories": [
-      {
-        "type": "時間線",
-        "articles": [
-          { 
-            "title": "時間線", 
-            "url": "games/Arknights/Chronology.html", 
-            "tags": ["紀元前10000前 · 更新中" ]
-          }
-        ]
-      },
-      {
-        "type": "劇情",
-        "articles": [
-          { 
-            "title": "序章 生於黑夜", 
-            "url": "games/Arknights/BornInTheNight.html", 
-            "tags": ["烏薩斯帝國", "切爾諾伯格" ]
-          }
-        ]
-      },
-      {
-        "type": "專有名詞",
-        "articles": [
-          { 
-            "title": "石棺", 
-            "url": "games/Arknights/StoneCoffiny.html", 
-            "tags": ["專有名詞"] 
-          }
-        ]
-      }
-    ]
+    "url": "games/Arknights/index.html",
   }
 ]
