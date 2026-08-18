@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>紀錄庫</title>
+  <title>遊戲攻略與世界觀筆記庫</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
     <header style="margin-bottom: 28px;">
-      <h1 style="font-size: 26px; font-weight: 800; margin-bottom: 8px;">記錄庫</h1>
-      <p style="color: var(--ink-soft); font-size: 13px; margin: 0;">主要是方便我查找和記錄我要的資料</p>
+      <h1 style="font-size: 26px; font-weight: 800; margin-bottom: 8px;">🎮 遊戲筆記與目錄</h1>
+      <p style="color: var(--ink-soft); font-size: 13px; margin: 0;">收錄遊戲攻略、主線劇情時間軸與世界觀名詞解析。</p>
     </header>
 
     <!-- 目錄動態渲染容器 -->
@@ -21,30 +21,18 @@
   </div>
 
   <script>
-    // 依分類名稱映射 CSS 樣式 class 與 emoji 圖示
     function getCategoryMeta(type) {
       const t = (type || '').trim();
-      if (t.includes('攻略')) {
-        return { class: 'guide', icon: '⚔️' };
-      }
-      if (t.includes('時間線')) {
-        return { class: 'story', icon: '⏳' };
-      }
-      if (t.includes('劇情')) {
-        return { class: 'story', icon: '📖' };
-      }
-      if (t.includes('專有名詞') || t.includes('術語') || t.includes('設定')) {
-        return { class: 'terms', icon: '📚' };
-      }
+      if (t.includes('攻略')) return { class: 'guide', icon: '⚔️' };
+      if (t.includes('時間線')) return { class: 'story', icon: '⏳' };
+      if (t.includes('劇情')) return { class: 'story', icon: '📖' };
+      if (t.includes('專有名詞') || t.includes('術語') || t.includes('設定')) return { class: 'terms', icon: '📚' };
       return { class: 'guide', icon: '📌' };
     }
 
-    // 讀取 data.json（加入時間戳記防快取）
     fetch('data.json?v=' + new Date().getTime())
       .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP 狀態碼錯誤：${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP 狀態碼錯誤：${response.status}`);
         return response.json();
       })
       .then(games => {
@@ -55,7 +43,6 @@
           return;
         }
 
-        // 動態生成卡片與網格
         container.innerHTML = games.map(game => {
           const gameName = game.gameName || '未命名遊戲';
           const categories = game.categories || [];
@@ -65,12 +52,19 @@
             const meta = getCategoryMeta(catType);
             const articles = cat.articles || [];
 
-            const articlesHtml = articles.map(article => `
-              <li class="article-item">
-                <a href="${article.url}">${article.title}</a>
-                ${article.date ? `<span class="badge">${article.date}</span>` : ''}
-              </li>
-            `).join('');
+            // 👇 就是放在這裡：遍歷每篇文章並生成多個標籤
+            const articlesHtml = articles.map(article => {
+              // 兼容性處理：若使用 tags 陣列就讀 tags；若仍使用舊的單一 date 字串就包成陣列
+              const tags = article.tags || (article.date ? [article.date] : []);
+              const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
+
+              return `
+                <li class="article-item">
+                  <a href="${article.url}">${article.title}</a>
+                  <div class="badge-group">${tagsHtml}</div>
+                </li>
+              `;
+            }).join('');
 
             return `
               <div class="category-block ${meta.class}">
