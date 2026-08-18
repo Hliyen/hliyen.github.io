@@ -63,7 +63,7 @@
       {
         "categoryName": "⚔️ 攻略",
         "pages": [
-          { "title": "招式 ● 劍", "path": "games/ZheJioShiJiangHu/table/Sword.html" }
+          { "title": "圖鑒 ● 劍", "path": "games/ZheJioShiJiangHu/table/Sword.html" }
         ]
       }
     ]
