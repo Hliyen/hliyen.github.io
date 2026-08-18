@@ -188,7 +188,8 @@ body {
   font-weight: 600;
   color: var(--ink-soft);
 }
-/* 標題卡片主容器 */
+
+/* 5. 標題卡片主容器 */
 .title-badge-card {
   display: flex;
   align-items: center;
@@ -204,13 +205,12 @@ body {
   backdrop-filter: blur(8px);
 }
 
-/* 標題文字區 */
 .title-badge-card h2,
 .title-badge-card h3 {
   margin: 0;
   font-size: 18px;
-  font-weight: 850;
-  color: #242335;
+  font-weight: 800;
+  color: var(--ink);
   letter-spacing: -0.02em;
   display: flex;
   align-items: center;
@@ -224,7 +224,7 @@ body {
   width: 5px;
   height: 18px;
   border-radius: 4px;
-  background: #ee9d42;
+  background: var(--orange);
 }
 
 .title-badge-card.story h2::before {
@@ -233,46 +233,11 @@ body {
   width: 5px;
   height: 18px;
   border-radius: 4px;
-  background: #8f7aea;
+  background: var(--lavender);
 }
 
-/* 膠囊標籤容器 */
-.badge-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* 基礎標籤樣式 */
-.badge-item {
-  font-size: 11px;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 999px;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-/* 標籤色彩分類 */
-.badge-orange {
-  color: #a06f52;
-  background: #fff5eb;
-  border: 1px solid rgba(238, 157, 66, 0.28);
-}
-
-.badge-lavender {
-  color: #685a96;
-  background: #f0ecff;
-  border: 1px solid rgba(143, 122, 234, 0.28);
-}
-
-.badge-coral {
-  color: #c94f63;
-  background: #fff0f3;
-  border: 1px solid rgba(250, 111, 127, 0.28);
-}
-/* 標題卡片主容器 */
-.title-badge-card {
+/* 6. 頂部返回導覽卡片 */
+.nav-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -281,52 +246,50 @@ body {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(109, 83, 118, 0.14);
   border-radius: 16px;
-  padding: 16px 20px;
-  margin: 20px 0;
-  box-shadow: 0 8px 24px rgba(80, 54, 78, 0.06);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 20px rgba(80, 54, 78, 0.05);
   backdrop-filter: blur(8px);
 }
 
-/* 標題文字區 */
-.title-badge-card h2,
-.title-badge-card h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 850;
-  color: #242335;
-  letter-spacing: -0.02em;
-  display: flex;
+.back-link {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: #f7f5fa;
+  border: 1px solid rgba(109, 83, 118, 0.1);
+  transition: all 150ms ease;
 }
 
-/* 標題左側色彩裝飾條 */
-.title-badge-card.guide h2::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 18px;
-  border-radius: 4px;
-  background: #ee9d42;
+.back-link .arrow {
+  font-size: 15px;
+  transition: transform 150ms ease;
 }
 
-.title-badge-card.story h2::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 18px;
-  border-radius: 4px;
-  background: #8f7aea;
+.back-link:hover {
+  color: var(--coral);
+  background: var(--coral-bg);
+  border-color: rgba(250, 111, 127, 0.25);
+  transform: translateY(-1px);
 }
 
-/* 膠囊標籤容器 */
+.back-link:hover .arrow {
+  transform: translateX(-3px);
+}
+
+/* 7. 膠囊標籤共用組件 */
 .badge-group {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-/* 基礎標籤樣式 */
 .badge-item {
   font-size: 11px;
   font-weight: 800;
@@ -336,33 +299,26 @@ body {
   white-space: nowrap;
 }
 
-/* 標籤色彩分類 */
 .badge-orange {
   color: #a06f52;
-  background: #fff5eb;
+  background: var(--orange-bg);
   border: 1px solid rgba(238, 157, 66, 0.28);
 }
 
 .badge-lavender {
   color: #685a96;
-  background: #f0ecff;
+  background: var(--lavender-bg);
   border: 1px solid rgba(143, 122, 234, 0.28);
 }
 
 .badge-coral {
   color: #c94f63;
-  background: #fff0f3;
+  background: var(--coral-bg);
   border: 1px solid rgba(250, 111, 127, 0.28);
 }
 
 .badge-mint {
   color: #2b826d;
-  background: #ecfaf5;
-  border: 1px solid rgba(54, 165, 139, 0.28);
-}
-
-.badge-mint {
-  color: #2b826d;
-  background: #ecfaf5;
+  background: var(--mint-bg);
   border: 1px solid rgba(54, 165, 139, 0.28);
 }
