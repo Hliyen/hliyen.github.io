@@ -5,7 +5,7 @@
       {
         "type": "攻略",
         "articles": [
-          { "title": "劍", "url": "games/ZheJioShiJiangHu/Sword.html", "date": "攻略" }
+          { "title": "劍", "url": "games/ZheJioShiJiangHu/Sword.html", "date": "2026/08/18" }
         ]
       }
     ]
@@ -16,19 +16,19 @@
       {
         "type": "時間線",
         "articles": [
-          { "title": "時間線", "url": "games/Arknights/Chronology.html", "date": "時間線" }
+          { "title": "時間線", "url": "games/Arknights/Chronology.html", "date": "2026/08/18" }
         ]
       },
       {
         "type": "劇情",
         "articles": [
-          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "劇情" }
+          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "2026/08/18" }
         ]
       },
       {
         "type": "專有名詞",
         "articles": [
-          { "title": "石棺", "url": "games/Arknights/StoneCoffiny.html", "date": "專有名詞" }
+          { "title": "石棺", "url": "games/Arknights/StoneCoffiny.html", "date": "2026/08/18" }
         ]
       }
     ]
