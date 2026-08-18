@@ -1,0 +1,8 @@
+[
+  {
+    "type": "攻略",
+    "articles": [
+      { "title": "劍", "url": "table/Sword.html", "tags": ["招式", "自創招式"] }
+    ]
+  } 
+]
