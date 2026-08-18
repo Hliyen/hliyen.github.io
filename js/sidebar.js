@@ -1,10 +1,15 @@
 (function () {
-  // 1. 自動計算根目錄相對路徑
-  let depth = 0;
-  if (window.location.pathname.includes('/games/')) {
-    depth = 2;
+  // 1. 取得 sidebar.js 自己的絕對路徑，藉此自動鎖定根目錄位置
+  // 例如: https://hliyen.github.io/js/sidebar.js -> 根目錄即為 https://hliyen.github.io/
+  const currentScript = document.currentScript;
+  let rootUrl = './';
+  
+  if (currentScript && currentScript.src) {
+    // 移除結尾的 'js/sidebar.js'，取得網站根路徑
+    rootUrl = currentScript.src.replace(/js\/sidebar\.js(\?.*)?$/i, '');
   }
-  const rootPrefix = depth > 0 ? '../'.repeat(depth) : './';
+
+  const jsonUrl = rootUrl + 'sidebar.json?v=' + new Date().getTime();
 
   // 2. 注入側邊欄組件
   const sidebarHtml = `
@@ -24,7 +29,7 @@
   `;
   document.body.insertAdjacentHTML('afterbegin', sidebarHtml);
 
-  // 3. 事件監聽
+  // 3. 開關事件
   const sidebar = document.getElementById('site-sidebar');
   const overlay = document.getElementById('sidebar-overlay');
   const toggleBtn = document.getElementById('sidebar-toggle');
@@ -44,12 +49,17 @@
   closeBtn.addEventListener('click', closeSidebar);
   overlay.addEventListener('click', closeSidebar);
 
-  // 4. 動態渲染：遊戲區塊 -> 類別區塊 (劇情/時間線) -> 文章連結
-  fetch(rootPrefix + 'sidebar.json?v=' + new Date().getTime())
-    .then(res => res.json())
+  // 4. 抓取 sidebar.json 並渲染各層級
+  fetch(jsonUrl)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`找不到 sidebar.json (HTTP ${res.status})，請求路徑: ${jsonUrl}`);
+      }
+      return res.json();
+    })
     .then(data => {
       const navContainer = document.getElementById('sidebar-nav');
-      const currentUrl = window.location.pathname;
+      const currentPath = window.location.pathname;
 
       navContainer.innerHTML = data.map(gameBlock => {
         const gameName = gameBlock.game;
@@ -57,8 +67,8 @@
 
         const categoriesHtml = categories.map(cat => {
           const linksHtml = cat.pages.map(page => {
-            const targetUrl = rootPrefix + page.path;
-            const isCurrent = currentUrl.endsWith(page.path) || (page.path === 'index.html' && currentUrl.endsWith('/'));
+            const targetUrl = rootUrl + page.path;
+            const isCurrent = currentPath.endsWith(page.path) || (page.path === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('/index.html')));
 
             return `
               <li>
@@ -89,6 +99,11 @@
     })
     .catch(err => {
       console.error('側邊欄載入失敗:', err);
-      document.getElementById('sidebar-nav').innerHTML = '<p style="font-size:12px;color:var(--coral);padding:10px;">導覽載入失敗</p>';
+      document.getElementById('sidebar-nav').innerHTML = `
+        <div style="padding: 12px; font-size: 11px; color: var(--coral);">
+          <p style="margin: 0 0 6px; font-weight: 800;">載入失敗</p>
+          <p style="margin: 0; color: var(--ink-soft); word-break: break-all;">${err.message}</p>
+        </div>
+      `;
     });
 })();
