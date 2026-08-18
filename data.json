@@ -1,0 +1,30 @@
+[
+  {
+    "gameName": "這就是江湖",
+    "categories": [
+      {
+        "type": "攻略",
+        "articles": [
+          { "title": "招式 ● 劍", "url": "games/ZheJioShiJiangHu/Sword.html", "date": "2026-08-18" },
+        ]
+      }
+    ]
+  }
+  {
+    "gameName": "明日方舟",
+    "categories": [
+      {
+        "type": "時間線",
+        "articles": [
+          { "title": "時間線", "url": "games/Arknights/Chronology.html", "date": "2026-08-18" },
+        ]
+      },
+      {
+        "type": "劇情",
+        "articles": [
+          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "2026-08-18" }
+        ]
+      }
+    ]
+  }
+]
