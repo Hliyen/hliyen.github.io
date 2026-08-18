@@ -561,3 +561,152 @@ body {
 .compact-game-card:hover .compact-game-title strong {
   color: var(--coral);
 }
+
+/* ================= 側邊欄 (Sidebar) 樣式 ================= */
+
+/* 左上角懸浮開關按鈕 */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(109, 83, 118, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(80, 54, 78, 0.08);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #fff0f3;
+  color: var(--coral);
+  transform: scale(1.05);
+}
+
+/* 遮罩背景 */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 35, 53, 0.35);
+  backdrop-filter: blur(3px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.sidebar-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 側邊欄抽屜主體 */
+.site-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 270px;
+  background: #fffdfb;
+  border-right: 1px solid rgba(109, 83, 118, 0.12);
+  box-shadow: 10px 0 30px rgba(80, 54, 78, 0.12);
+  z-index: 101;
+  transform: translateX(-100%);
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.site-sidebar.is-open {
+  transform: translateX(0);
+}
+
+/* 側邊欄標頭 */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 16px;
+  border-bottom: 1px solid rgba(109, 83, 118, 0.08);
+}
+
+.sidebar-logo {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.sidebar-close-btn {
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.sidebar-close-btn:hover {
+  color: var(--coral);
+}
+
+/* 連結群組與項目 */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 12px;
+}
+
+.sidebar-group {
+  margin-bottom: 18px;
+}
+
+.sidebar-group-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--lavender);
+  padding: 4px 8px;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 120ms ease;
+}
+
+.sidebar-link:hover {
+  background: var(--coral-bg);
+  color: var(--coral);
+}
+
+/* 當前瀏覽頁面高亮 */
+.sidebar-link.active {
+  background: #f0ecff;
+  color: var(--lavender);
+  font-weight: 800;
+  border-left: 3px solid var(--lavender);
+}
