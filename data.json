@@ -16,13 +16,13 @@
       {
         "type": "時間線",
         "articles": [
-          { "title": "時間線", "url": "games/Arknights/Chronology.html", "date": "2026-08-18" }
+          { "title": "時間線", "url": "games/Arknights/Chronology.html", "date": "時間線" }
         ]
       },
       {
         "type": "劇情",
         "articles": [
-          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "2026-08-18" }
+          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "烏薩斯帝國","切爾諾伯格" }
         ]
       },
       {
