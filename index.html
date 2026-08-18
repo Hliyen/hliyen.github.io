@@ -2,28 +2,48 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>遊戲紀錄庫</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 主題樣式 -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
+  <title>遊戲攻略與劇情庫</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="app">載入中...</div>
+  <div class="container">
+    <header>
+      <h1>遊戲筆記與目錄</h1>
+    </header>
+
+    <main id="directory-container">
+      <!-- JavaScript 會自動將目錄渲染於此 -->
+    </main>
+  </div>
+
   <script>
-    window.$docsify = {
-      name: '遊戲紀錄庫',
-      loadSidebar: true,     // 開啟側邊欄
-      subMaxLevel: 3,        // 自動將文章內的二、三級標題列入側邊欄
-      auto2top: true,        // 切換頁面自動滾動到頂部
-      search: {
-        placeholder: '搜尋攻略或劇情...',
-        noData: '找不到相關內容'
-      }
-    }
+    fetch('data.json')
+      .then(response => response.json())
+      .then(games => {
+        const container = document.getElementById('directory-container');
+        container.innerHTML = games.map(game => `
+          <section class="game-section">
+            <h2>${game.gameName}</h2>
+            <div class="category-grid">
+              ${game.categories.map(cat => `
+                <div class="category-card">
+                  <h3>${cat.type}</h3>
+                  <ul>
+                    ${cat.articles.map(article => `
+                      <li>
+                        <a href="${article.url}">${article.title}</a>
+                        <span class="date">${article.date}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+        `).join('');
+      })
+      .catch(err => console.error('無法載入目錄資料:', err));
   </script>
-  <!-- Docsify 核心與外掛 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
 </body>
 </html>
