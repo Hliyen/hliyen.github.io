@@ -1,22 +1,71 @@
 [
   {
-    "group": "首頁總覽",
-    "pages": [
-      { "title": "首頁目錄", "path": "index.html" }
+    "game": "首頁",
+    "categories": [
+      {
+        "categoryName": "全局導覽",
+        "pages": [
+          { "title": "首頁", "path": "index.html" }
+        ]
+      }
     ]
   },
   {
-    "group": "明日方舟",
-    "pages": [      
-      { "title": "序章 生於黑夜", "path": "games/Arknights/table/BornInTheNight.html" },
-      { "title": "時間線", "path": "games/Arknights/table/Chronology.html" },
-      { "title": "石棺", "path": "games/Arknights/table/StoneCoffiny.html" }
+    "game": "明日方舟",
+    "categories": [
+      {
+        "categoryName": "專區首頁",
+        "pages": [
+          {
+            "title": "明日方舟首頁",
+            "path": "games/Arknights/index.html"            
+          }
+        ]
+      },
+      {
+        "categoryName": "📖 劇情",
+        "pages": [
+          {
+            "title": "序章 生於黑夜",
+            "path": "games/Arknights/table/BornInTheNight.html"            
+          }
+        ]
+      },
+      {
+        "categoryName": "⏳ 時間線",
+        "pages": [
+          {
+            "title": "時間線",
+            "path": "games/Arknights/table/Chronology.html"            
+          }
+        ]
+      },
+      {
+        "categoryName": "📚 專有名詞",
+        "pages": [
+          {
+            "title": "石棺",
+            "path": "games/Arknights/table/StoneCoffiny.html"            
+          }
+        ]
+      }
     ]
   },
   {
-    "group": "這就是江湖",
-    "pages": [      
-      { "title": "劍", "path": "games/ZheJioShiJiangHu/table/Sword.html" }
+    "game": "這就是江湖",
+    "categories": [
+      {
+        "categoryName": "專區首頁",
+        "pages": [
+          { "title": "這就是江湖首頁", "path": "games/ZheJioShiJiangHu/index.html" }
+        ]
+      },
+      {
+        "categoryName": "⚔️ 攻略",
+        "pages": [
+          { "title": "招式 ● 劍", "path": "games/ZheJioShiJiangHu/table/Sword.html" }
+        ]
+      }
     ]
   }
 ]
