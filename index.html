@@ -2,48 +2,74 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>遊戲攻略與劇情庫</title>
+  <title>遊戲紀錄與時間線庫</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>遊戲筆記與目錄</h1>
-    </header>
+    
+    <!-- 遊戲卡片目錄 -->
+    <div class="game-card">
+      <h2 class="game-title">明日方舟</h2>
+      <div class="category-grid">
+        
+        <!-- 攻略分流 
+        <div class="category-block guide">
+          <h4>⚔️ 攻略與養成</h4>
+          <ul class="article-list">
+            <li class="article-item">
+              <a href="games/Arknights/guide-01.html">新手幹員培養思路</a>
+              <span class="badge">更新</span>
+            </li>
+          </ul>
+        </div>
+        --! >
+        <!-- 劇情分流 -->
+        <div class="category-block story">
+          <h4>📖 劇情與世界線</h4>
+          <ul class="article-list">
+            <li class="article-item">
+              <a href="games/Arknights/BornInTheNight.html">序章 生於黑夜</a>
+              <span class="badge">2026-08-18</span>
+            </li>
+            <li class="article-item">
+              <a href="games/Arknights/Chronology.html">大地編年時間線</a>
+              <span class="badge">2026-08-18</span>
+            </li>
+          </ul>
+        </div>
 
-    <main id="directory-container">
-      <!-- JavaScript 會自動將目錄渲染於此 -->
-    </main>
+      </div>
+    </div>
+
+    <!-- 文章內頁示範：時間線、圖片與提示框 -->
+    <div class="game-card">
+      <h2 class="game-title">時間線與劇情示例</h2>
+      
+      <!-- 提示框 -->
+      <div class="note-box">
+        💡 <strong>提示</strong>：此節點記錄主要世界觀重大轉折，與後續主線章節有直接伏筆關聯。
+      </div>
+
+      <!-- 劇情時間線 -->
+      <div class="timeline">
+        <div class="timeline-node">
+          <span class="timeline-date">節點 01</span>
+          <p class="timeline-content">主角甦醒於邊境基地，首次與各勢力交涉並記錄現場狀況。</p>
+        </div>
+        <div class="timeline-node">
+          <span class="timeline-date">節點 02</span>
+          <p class="timeline-content">關鍵事件觸發，各大陣營介入衝突，核心世界觀展開。</p>
+        </div>
+      </div>
+
+      <!-- 截圖展示框 -->
+      <figure class="game-figure">
+        <img src="images/sample.png" alt="戰鬥與劇情截圖">
+        <figcaption>▲ 關鍵事件記錄截圖</figcaption>
+      </figure>
+    </div>
+
   </div>
-
-  <script>
-    fetch('data.json')
-      .then(response => response.json())
-      .then(games => {
-        const container = document.getElementById('directory-container');
-        container.innerHTML = games.map(game => `
-          <section class="game-section">
-            <h2>${game.gameName}</h2>
-            <div class="category-grid">
-              ${game.categories.map(cat => `
-                <div class="category-card">
-                  <h3>${cat.type}</h3>
-                  <ul>
-                    ${cat.articles.map(article => `
-                      <li>
-                        <a href="${article.url}">${article.title}</a>
-                        <span class="date">${article.date}</span>
-                      </li>
-                    `).join('')}
-                  </ul>
-                </div>
-              `).join('')}
-            </div>
-          </section>
-        `).join('');
-      })
-      .catch(err => console.error('無法載入目錄資料:', err));
-  </script>
 </body>
 </html>
