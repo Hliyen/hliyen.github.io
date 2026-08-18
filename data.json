@@ -5,7 +5,7 @@
       {
         "type": "攻略",
         "articles": [
-          { "title": "劍", "url": "games/ZheJioShiJiangHu/Sword.html", "date": "招式","自創武學" }
+          { "title": "劍", "url": "games/ZheJioShiJiangHu/Sword.html", "date": "招式" }
         ]
       }
     ]
@@ -22,7 +22,7 @@
       {
         "type": "劇情",
         "articles": [
-          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "烏薩斯帝國","切爾諾伯格" }
+          { "title": "序章 生於黑夜", "url": "games/Arknights/BornInTheNight.html", "date": "烏薩斯帝國" }
         ]
       },
       {
