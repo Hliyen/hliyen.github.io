@@ -395,3 +395,15 @@ body {
 .story-content p {
   margin-bottom: 12px;
 }
+
+/* 專有名詞分類色彩 */
+.category-block.terms,
+.category-block.專有名詞 {
+  background: var(--mint-bg);
+  border-color: rgba(54, 165, 139, 0.2);
+}
+
+.category-block.terms h4,
+.category-block.專有名詞 h4 {
+  color: #2b826d;
+}
