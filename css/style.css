@@ -562,6 +562,39 @@ body {
   color: var(--coral);
 }
 
+/* 自創前置招式容器 */
+.prereq-box {
+  background: #f8f6fc;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin: 6px 0 10px;
+  border: 1px dashed rgba(143, 122, 234, 0.25);
+}
+
+.prereq-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #685a96;
+  margin-bottom: 6px;
+}
+
+.prereq-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.prereq-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--ink);
+  background: white;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid rgba(109, 83, 118, 0.15);
+}
+
 /* ================= 側邊欄 (Sidebar) 樣式 ================= */
 
 /* 左上角三條線開關按鈕：半透明毛玻璃質感 */
