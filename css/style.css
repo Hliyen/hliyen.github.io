@@ -562,3 +562,49 @@ body {
   font-weight: 800;
   border-left: 3px solid var(--lavender);
 }
+
+/* ================= 首頁緊湊型卡片與網格 ================= */
+.compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.compact-game-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(238, 157, 66, 0.25);
+  box-shadow: 0 4px 14px rgba(80, 54, 78, 0.05);
+  text-decoration: none;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.compact-game-card:hover {
+  transform: translateY(-2px);
+  background: var(--orange-bg);
+  border-color: rgba(238, 157, 66, 0.45);
+  box-shadow: 0 6px 18px rgba(80, 54, 78, 0.09);
+}
+
+.compact-game-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.compact-game-title strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.compact-game-card:hover .compact-game-title strong {
+  color: var(--coral);
+}
