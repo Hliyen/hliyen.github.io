@@ -1,0 +1,24 @@
+[
+  {
+    "group": "首頁總覽",
+    "pages": [
+      { "title": "首頁目錄", "path": "index.html" }
+    ]
+  },
+  {
+    "group": "明日方舟",
+    "pages": [
+      { "title": "專區目錄", "path": "games/Arknights/index.html" },
+      { "title": "序章 生於黑夜", "path": "games/Arknights/table/BornInTheNight.html" },
+      { "title": "時間線", "path": "games/Arknights/table/Chronology.html" },
+      { "title": "石棺", "path": "games/Arknights/table/StoneCoffiny.html" }
+    ]
+  },
+  {
+    "group": "這就是江湖",
+    "pages": [
+      { "title": "專區目錄", "path": "games/ZheJioShiJiangHu/index.html" },
+      { "title": "劍", "path": "games/ZheJioShiJiangHu/table/Sword.html" }
+    ]
+  }
+]
