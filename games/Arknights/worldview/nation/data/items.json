@@ -1,6 +1,9 @@
 [
   {
-    "title": "烏薩斯",
+    "id": "Ursus",
+    "title": "烏薩斯帝國",
+    "capital": "聖駿堡",
+    "currency": "切爾文",
     "url": "pages/Ursus.html",
     "tags": ["帝國", "聖駿堡", "盾衛"]
   }
