@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: "📖",
       class: "story",
       items: [
-        { title: "主線劇情 (Main Theme)", url: "story/main/index.html", tags: ["章節主線"] },
-        { title: "插曲 (Intermezzi)", url: "story/intermezzi/index.html", tags: ["常駐大型活動"] },
-        { title: "別傳 (SideStory)", url: "story/sidestory/index.html", tags: ["支線活動"] },
-        { title: "故事集 (Vignettes)", url: "story/vignettes/index.html", tags: ["短篇故事"] }
+        { title: "主線劇情", url: "story/main/index.html", tags: ["章節主線"] },
+        { title: "插曲", url: "story/intermezzi/index.html", tags: ["常駐大型活動"] },
+        { title: "別傳", url: "story/sidestory/index.html", tags: ["支線活動"] },
+        { title: "故事集", url: "story/vignettes/index.html", tags: ["短篇故事"] }
       ]
     },
     {
