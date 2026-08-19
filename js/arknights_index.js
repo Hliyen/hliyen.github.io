@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: "⏳",
       class: "story",
       items: [
-        { title: "時間線", url: "timeline/index.html", tags: ["時間線"] }
+        { title: "大地編年時間線", url: "timeline/index.html", tags: ["編年史"] }
       ]
     },
     {
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: "📖",
       class: "story",
       items: [
-        { title: "主線劇情", url: "story/main/index.html", tags: ["章節主線"] },
-        { title: "插曲", url: "story/intermezzi/index.html", tags: ["常駐大型活動"] },
-        { title: "別傳", url: "story/sidestory/index.html", tags: ["支線活動"] },
-        { title: "故事集", url: "story/vignettes/index.html", tags: ["短篇故事"] }
+        { title: "主線劇情 (Main Theme)", url: "story/main/index.html", tags: ["章節主線"] },
+        { title: "插曲 (Intermezzi)", url: "story/intermezzi/index.html", tags: ["常駐大型活動"] },
+        { title: "別傳 (SideStory)", url: "story/sidestory/index.html", tags: ["支線活動"] },
+        { title: "故事集 (Vignettes)", url: "story/vignettes/index.html", tags: ["短篇微型故事"] }
       ]
     },
     {
@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: "🌍",
       class: "terms",
       items: [
-        { title: "世界", url: "worldview/world/index.html", tags: ["泰拉"] },
-        { title: "國家與地區", url: "worldview/nations/index.html", tags: ["國家"] },
-        { title: "種族", url: "worldview/races/index.html", tags: ["種族"] },
-        { title: "組織", url: "worldview/factions/index.html", tags: ["組織"] },
-        { title: "概念", url: "worldview/concepts/index.html", tags: ["概念"] },
-        { title: "物品", url: "worldview/items/index.html", tags: ["物品"] }
+        { title: "世界", url: "worldview/world/index.html", tags: ["泰拉環境"] },
+        { title: "國家與地區", url: "worldview/nations/index.html", tags: ["版圖勢力"] },
+        { title: "種族", url: "worldview/races/index.html", tags: ["先民/薩卡茲"] },
+        { title: "組織", url: "worldview/factions/index.html", tags: ["羅德島/軍政"] },
+        { title: "概念", url: "worldview/concepts/index.html", tags: ["源石/源石病"] },
+        { title: "物品", url: "worldview/items/index.html", tags: ["科技/聖物"] }
       ]
     }
   ];
@@ -39,30 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container) return;
 
   container.innerHTML = CATEGORY_CONFIG.map(cat => {
+    // 內部條目：還原為原始的 <ul> <li> 文字列表與右側標籤樣式
     const itemsHtml = cat.items.map(item => {
       const tags = item.tags || [];
       const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
-      const itemIcon = item.icon || '📌';
-      
+
       return `
-        <a href="${item.url}" class="compact-game-card">
-          <div class="compact-game-title">
-            <span class="game-icon">${itemIcon}</span>
-            <strong>${item.title}</strong>
-          </div>
+        <li class="article-item">
+          <a href="${item.url}">${item.title}</a>
           <div class="badge-group">${tagsHtml}</div>
-        </a>
+        </li>
       `;
     }).join('');
 
+    // 外層分類卡片：包在 compact-game-card 內，使三大分類呈現緊湊卡片排列
     return `
-      <div class="category-block ${cat.class}" style="margin-bottom: 20px;">
-        <h4 style="margin: 0 0 12px; font-size: 14px; font-weight: 800;">
-          ${cat.icon} ${cat.type}
+      <div class="compact-game-card category-block ${cat.class}" style="display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
+        <h4 style="margin: 0 0 10px; font-size: 14px; font-weight: 800;">
+          ${cat.type}
         </h4>
-        <div class="compact-grid">
+        <ul class="article-list" style="margin: 0; padding: 0; flex-grow: 1;">
           ${itemsHtml}
-        </div>
+        </ul>
       </div>
     `;
   }).join('');
