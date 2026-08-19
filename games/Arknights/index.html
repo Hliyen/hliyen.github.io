@@ -24,43 +24,75 @@
     <div class="game-card">
       <h2 class="game-title">明日方舟 目錄</h2>
       <div id="category-container" class="category-grid">
-        <p style="color: var(--ink-soft); font-size: 13px;">正在載入分類資料...</p>
+        <p style="color: var(--ink-soft); font-size: 13px;">正在載入各分類資料...</p>
       </div>
     </div>
   </div>
 
   <script>
-    // 依分類名稱映射色彩 Class 與 Emoji
-    function getCategoryMeta(type) {
-      const t = (type || '').trim();
-      if (t.includes('攻略')) return { class: 'guide', icon: '⚔️' };
-      if (t.includes('時間線')) return { class: 'story', icon: '⏳' };
-      if (t.includes('劇情')) return { class: 'story', icon: '📖' };
-      if (t.includes('專有名詞') || t.includes('術語') || t.includes('設定')) return { class: 'terms', icon: '📚' };
-      return { class: 'guide', icon: '📌' };
+    // 定義所有分類及其對應的資料夾與樣式
+    const CATEGORY_CONFIG = [
+      {
+        type: "時間線",
+        dir: "timeline/",
+        icon: "⏳",
+        class: "story"
+      },
+      {
+        type: "劇情",
+        dir: "story/",
+        icon: "📖",
+        class: "story"
+      },
+      {
+        type: "專有名詞",
+        dir: "terms/",
+        icon: "📚",
+        class: "terms"
+      }
+    ];
+
+    // 載入單一分類資料夾下的所有文章
+    async function loadCategory(cat) {
+      try {
+        const manifestRes = await fetch(`${cat.dir}manifest.json?v=${Date.now()}`);
+        if (!manifestRes.ok) return { ...cat, articles: [] };
+
+        const fileList = await manifestRes.json();
+
+        // 讀取該資料夾下的各個 JSON 檔案
+        const articlePromises = fileList.map(async name => {
+          const fileName = name.endsWith('.json') ? name : `${name}.json`;
+          const res = await fetch(`${cat.dir}${fileName}?v=${Date.now()}`);
+          if (!res.ok) throw new Error(`讀取失敗: ${cat.dir}${fileName}`);
+          return res.json();
+        });
+
+        const articles = await Promise.all(articlePromises);
+        return { ...cat, articles };
+      } catch (err) {
+        console.warn(`分類 [${cat.type}] 載入失敗:`, err);
+        return { ...cat, articles: [] };
+      }
     }
 
-    // 讀取當前遊戲目錄下的 data.json
-    fetch('data.json?v=' + new Date().getTime())
-      .then(response => {
-        if (!response.ok) throw new Error(`HTTP 錯誤：${response.status}`);
-        return response.json();
-      })
-      .then(categories => {
-        const container = document.getElementById('category-container');
+    // 載入所有分類並渲染
+    async function renderAllCategories() {
+      const container = document.getElementById('category-container');
 
-        if (!Array.isArray(categories) || categories.length === 0) {
+      try {
+        const categories = await Promise.all(CATEGORY_CONFIG.map(loadCategory));
+
+        // 過濾掉完全沒有文章的分類（若希望空分類也顯示可拿掉 filter）
+        const validCategories = categories.filter(cat => cat.articles && cat.articles.length > 0);
+
+        if (validCategories.length === 0) {
           container.innerHTML = '<p style="color: var(--ink-soft);">目前尚無文章資料。</p>';
           return;
         }
 
-        // 動態生成分類區塊與文章清單
-        container.innerHTML = categories.map(cat => {
-          const catType = cat.type || '未分類';
-          const meta = getCategoryMeta(catType);
-          const articles = cat.articles || [];
-
-          const articlesHtml = articles.map(article => {
+        container.innerHTML = validCategories.map(cat => {
+          const articlesHtml = cat.articles.map(article => {
             const tags = article.tags || (article.date ? [article.date] : []);
             const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
 
@@ -73,21 +105,22 @@
           }).join('');
 
           return `
-            <div class="category-block ${meta.class}">
-              <h4>${meta.icon} ${catType}</h4>
+            <div class="category-block ${cat.class}">
+              <h4>${cat.icon} ${cat.type}</h4>
               <ul class="article-list">
-                ${articlesHtml || '<li class="article-item"><span style="font-size:12px; color:var(--ink-soft);">尚無文章</span></li>'}
+                ${articlesHtml}
               </ul>
             </div>
           `;
         }).join('');
-      })
-      .catch(err => {
-        console.error('目錄載入失敗:', err);
-        document.getElementById('category-container').innerHTML = 
-          `<p style="color: var(--coral);">資料載入失敗，請確認 data.json 格式是否正確。</p>`;
-      });
+      } catch (error) {
+        console.error('全站目錄渲染失敗:', error);
+        container.innerHTML = '<p style="color: var(--coral);">載入資料發生錯誤。</p>';
+      }
+    }
+
+    renderAllCategories();
   </script>
-<script src="../../js/sidebar.js"></script>
+  <script src="../../js/sidebar.js"></script>
 </body>
 </html>
