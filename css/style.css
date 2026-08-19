@@ -10,7 +10,7 @@
   --mint-bg: #f0faf6;
   --orange: #ee9d42;
   --orange-bg: #fff9f2;
-  --gold: #ffd700; /* 已補齊分號 */
+  --gold: #ffd700; 
   --shadow-soft: 0 12px 35px rgba(80, 54, 78, 0.07);
 }
 
@@ -60,7 +60,7 @@ body {
   border: 1px solid transparent;
 }
 
-/* 分類色彩分流 */
+/* 2.分類色彩分流 */
 .category-block.guide {
   background: var(--orange-bg);
   border-color: rgba(238, 157, 66, 0.2);
@@ -122,7 +122,7 @@ body {
   border: 1px solid rgba(80, 54, 78, 0.1);
 }
 
-/* 2. 劇情時間線組件 */
+/* 3. 劇情時間線組件 */
 .timeline {
   position: relative;
   margin: 20px 0;
@@ -166,7 +166,7 @@ body {
   margin: 0;
 }
 
-/* 3. 攻略重點提示框 */
+/* 4. 攻略重點提示框 */
 .note-box {
   margin: 18px 0;
   padding: 14px 16px;
@@ -178,7 +178,7 @@ body {
   line-height: 1.6;
 }
 
-/* 4. 遊戲截圖展示框 */
+/* 5. 遊戲截圖展示框 */
 .game-figure {
   margin: 20px 0;
   text-align: center;
@@ -198,7 +198,7 @@ body {
   color: var(--ink-soft);
 }
 
-/* 5. 標題卡片主容器 */
+/* 6. 標題卡片主容器 */
 .title-badge-card {
   display: flex;
   align-items: center;
@@ -244,7 +244,7 @@ body {
   background: var(--lavender);
 }
 
-/* 6. 標題左側色彩裝飾條 */
+/* 7. 標題左側色彩裝飾條 */
 
 .title-badge-card.guide h2::before {
 
@@ -279,7 +279,7 @@ body {
   background: var(--lavender);
 
 }
-/* 7. 頂部返回導覽卡片 */
+/* 8. 頂部返回導覽卡片 */
 .nav-card {
   display: flex;
   align-items: center;
@@ -326,7 +326,7 @@ body {
   transform: translateX(-3px);
 }
 
-/* 5. 膠囊標籤 */
+/* 9.膠囊標籤 */
 .badge-group {
   display: flex;
   align-items: center;
@@ -366,7 +366,93 @@ body {
   border: 1px solid rgba(54, 165, 139, 0.28);
 }
 
-/* 6. 模組標題與標籤列 */
+/* 10.參與人員卡片 */
+.cast-card {
+  background: var(--lavender-bg);
+  border: 1px solid rgba(143, 122, 234, 0.22);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin: 16px 0 24px;
+}
+
+.cast-title {
+  margin-bottom: 10px;
+}
+
+.cast-title span {
+  font-size: 11px;
+  font-weight: 800;
+  color: #685a96;
+  letter-spacing: 0.05em;
+}
+
+.cast-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cast-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  padding: 5px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(109, 83, 118, 0.12);
+  box-shadow: 0 2px 6px rgba(80, 54, 78, 0.04);
+}
+
+.cast-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cast-role {
+  font-size: 10px
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: #f4f2f8;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* 11.劇情概述內文排版 */
+.story-overview-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.story-content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #4e4654;
+}
+
+.story-content p {
+  margin-bottom: 12px;
+}
+
+/* 12.專有名詞分類色彩 */
+.category-block.terms,
+.category-block.專有名詞 {
+  background: var(--mint-bg);
+  border-color: rgba(54, 165, 139, 0.2);
+}
+
+.category-block.terms h4,
+.category-block.專有名詞 h4 {
+  color: #2b826d;
+}
+
+/* 13. 模組標題與標籤列 */
 .module-main-header {
   display: flex;
   align-items: center;
@@ -399,7 +485,7 @@ body {
   margin: 0;
 }
 
-/* 7. 招式卡片（雙欄緊湊排版） */
+/* 14.招式卡片（雙欄緊湊排版） */
 .item-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -439,6 +525,7 @@ body {
   color: var(--ink);
 }
 
+/* 15.階級/品質標籤 */
 .rarity-badge {
   font-size: 10px;
   font-weight: 800;
@@ -466,7 +553,7 @@ body {
   margin: 0;
 }
 
-/* 8. 自創前置招式標籤 */
+/* 16.自創前置招式標籤 */
 .prereq-box {
   background: #f8f6fc;
   border-radius: 6px;
@@ -499,7 +586,7 @@ body {
   border: 1px solid rgba(109, 83, 118, 0.12);
 }
 
-/* 9. 側邊欄 (Sidebar) */
+/* 17. 側邊欄 (Sidebar) */
 .sidebar-toggle-btn {
   position: fixed;
   top: 18px;
@@ -663,7 +750,7 @@ body {
   border-left: 3px solid var(--lavender);
 }
 
-/* ================= 首頁緊湊型卡片與網格 ================= */
+/* 18.首頁緊湊型卡片與網格*/
 .compact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
