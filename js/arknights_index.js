@@ -42,7 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemsHtml = cat.items.map(item => {
       const tags = item.tags || [];
       const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
-
+      const itemIcon = item.icon || '📌';
+      
       return `
         <a href="${item.url}" class="compact-game-card">
           <div class="compact-game-title">
