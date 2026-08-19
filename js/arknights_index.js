@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container) return;
 
   container.innerHTML = CATEGORY_CONFIG.map(cat => {
-    // 內部條目：還原為原始的 <ul> <li> 文字列表與右側標籤樣式
+    // 內部條目：原始 <ul> <li> 文字列表樣式
     const itemsHtml = cat.items.map(item => {
       const tags = item.tags || [];
       const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
 
-    // 外層分類卡片：包在 compact-game-card 內，使三大分類呈現緊湊卡片排列
+    // 外層分類卡片：緊湊型卡片排版，標題帶有專屬 icon
     return `
       <div class="compact-game-card category-block ${cat.class}" style="display: flex; flex-direction: column; height: 100%; box-sizing: border-box;">
         <h4 style="margin: 0 0 10px; font-size: 14px; font-weight: 800;">
-          ${cat.type}
+          ${cat.icon} ${cat.type}
         </h4>
         <ul class="article-list" style="margin: 0; padding: 0; flex-grow: 1;">
           ${itemsHtml}
