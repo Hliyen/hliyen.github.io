@@ -44,19 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const tagsHtml = tags.map(tag => `<span class="badge">${tag}</span>`).join('');
 
       return `
-        <li class="article-item">
-          <a href="${item.url}">${item.title}</a>
+        <a href="${item.url}" class="compact-game-card">
+          <div class="compact-game-title">
+            <span class="game-icon">${itemIcon}</span>
+            <strong>${item.title}</strong>
+          </div>
           <div class="badge-group">${tagsHtml}</div>
-        </li>
+        </a>
       `;
     }).join('');
 
     return `
-      <div class="category-block ${cat.class}">
-        <h4>${cat.icon} ${cat.type}</h4>
-        <ul class="article-list">
+      <div class="category-block ${cat.class}" style="margin-bottom: 20px;">
+        <h4 style="margin: 0 0 12px; font-size: 14px; font-weight: 800;">
+          ${cat.icon} ${cat.type}
+        </h4>
+        <div class="compact-grid">
           ${itemsHtml}
-        </ul>
+        </div>
       </div>
     `;
   }).join('');
